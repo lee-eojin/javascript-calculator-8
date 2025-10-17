@@ -11,7 +11,18 @@ class App {
     if (input === "") {
       return 0;
     }
-    
+
+    const PREFIX = "//";
+
+    if (input.startsWith(PREFIX)) {
+      const delimiterEndIndex = input.indexOf("\n");
+      const customDelimiter = input.substring(PREFIX.length, delimiterEndIndex);
+      const numberString = input.substring(delimiterEndIndex + 1);
+
+      console.log("커스텀 구분자:", customDelimiter);
+      console.log("숫자 부분:", numberString);
+      return 0;
+    }
     return 0;
   }
 }

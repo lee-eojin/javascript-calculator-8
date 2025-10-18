@@ -25,16 +25,18 @@ class App {
       if (negativeNumber !== undefined) {
         throw new Error("[ERROR] 음수는 입력할 수 없습니다.");
       }
-      const sum = numbers.reduce((acc, num) => acc + num, 0);
-      return sum;
+      return this.sum(numbers);
     }
     const numbers = input.split(/[,:]/).map(Number);
     const negativeNumber = numbers.find(num => num < 0);
     if (negativeNumber !== undefined) {
       throw new Error("[ERROR] 음수는 입력할 수 없습니다.");
     }
-    const sum = numbers.reduce((acc, num) => acc + num, 0);
-    return sum;
+    return this.sum(numbers);
+  }
+
+  sum(numbers) {
+    return numbers.reduce((acc, num) => acc + num, 0);
   }
 }
 export default App;

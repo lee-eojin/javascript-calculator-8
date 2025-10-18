@@ -1,5 +1,10 @@
 import { Console } from "@woowacourse/mission-utils";
 
+const PREFIX = "//";
+const NEWLINE = "\n";
+const DEFAULT_DELIMITERS = /[,:]/;
+const ESCAPED_NEWLINE = /\\n/g;
+
 class App {
   async run() {
     const input = await Console.readLineAsync("덧셈할 문자열을 입력해 주세요.\n");
@@ -18,22 +23,27 @@ class App {
   }
 
   parseNumbers(input) {
-    if (input.startsWith("//")) {
+    if (input.startsWith(PREFIX)) {
       return this.parseCustomDelimiter(input);
     }
     return this.parseDefaultDelimiter(input);
   }
 
   parseCustomDelimiter(input) {
-    const normalized = input.replace(/\\n/g, "\n");
-    const endIdx = normalized.indexOf("\n");
-    const delimiter = normalized.substring("//".length, endIdx);
+    const normalized = input.replace(ESCAPED_NEWLINE, NEWLINE);
+    const endIdx = normalized.indexOf(NEWLINE);
+    const delimiter = normalized.substring(PREFIX.length, endIdx);
+
+    if (delimiter === "") {
+      throw new Error("[ERROR] 커스텀 구분자가 비어있습니다.");
+    }
+
     const numStr = normalized.substring(endIdx + 1);
     return numStr.split(delimiter).map(Number);
   }
 
   parseDefaultDelimiter(input) {
-    return input.split(/[,:]/).map(Number);
+    return input.split(DEFAULT_DELIMITERS).map(Number);
   }
 
   validateNumbers(numbers) {

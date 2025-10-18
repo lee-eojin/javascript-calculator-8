@@ -24,7 +24,8 @@ class App {
       return 0;
     }
     const numbers = input.split(/[,:]/).map(Number);
-    
+    const sum = numbers.reduce((acc, num) => acc + num, 0);
+    return sum;
   }
 }
 

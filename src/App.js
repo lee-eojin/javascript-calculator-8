@@ -12,9 +12,9 @@ class App {
       return 0;
     }
 
-    const numbers = this.parseNumbers(input);
-    this.validateNumbers(numbers);
-    return this.sum(numbers);
+    const parsedNumbers = this.parseNumbers(input);
+    this.validateNumbers(parsedNumbers);
+    return this.sum(parsedNumbers);
   }
 
   parseNumbers(input) {
@@ -25,11 +25,11 @@ class App {
   }
 
   parseCustomDelimiter(input) {
-    const normalizedInput = input.replace(/\\n/g, "\n");
-    const delimiterEndIndex = normalizedInput.indexOf("\n");
-    const customDelimiter = normalizedInput.substring(2, delimiterEndIndex);
-    const numberString = normalizedInput.substring(delimiterEndIndex + 1);
-    return numberString.split(customDelimiter).map(Number);
+    const normalized = input.replace(/\\n/g, "\n");
+    const endIdx = normalized.indexOf("\n");
+    const delimiter = normalized.substring(2, endIdx);
+    const numStr = normalized.substring(endIdx + 1);
+    return numStr.split(delimiter).map(Number);
   }
 
   parseDefaultDelimiter(input) {
@@ -37,8 +37,8 @@ class App {
   }
 
   validateNumbers(numbers) {
-    const negativeNumber = numbers.find(num => num < 0);
-    if (negativeNumber !== undefined) {
+    const negative = numbers.find(num => num < 0);
+    if (negative !== undefined) {
       throw new Error("[ERROR] 음수는 입력할 수 없습니다.");
     }
   }

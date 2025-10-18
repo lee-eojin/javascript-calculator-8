@@ -51,6 +51,11 @@ class App {
     if (negative !== undefined) {
       throw new Error("[ERROR] 음수는 입력할 수 없습니다.");
     }
+
+    const invalid = numbers.find(num => isNaN(num));
+    if (invalid !== undefined) {
+      throw new Error("[ERROR] 유효하지 않은 숫자입니다.");
+    }
   }
 
   sum(numbers) {

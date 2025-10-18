@@ -15,9 +15,11 @@ class App {
     const PREFIX = "//";
 
     if (input.startsWith(PREFIX)) {
-      const delimiterEndIndex = input.indexOf("\n");
-      const customDelimiter = input.substring(PREFIX.length, delimiterEndIndex);
-      const numberString = input.substring(delimiterEndIndex + 1);
+      const normalizedInput = input.replace(/\\n/g, "\n");
+
+      const delimiterEndIndex = normalizedInput.indexOf("\n");
+      const customDelimiter = normalizedInput.substring(PREFIX.length, delimiterEndIndex);
+      const numberString = normalizedInput.substring(delimiterEndIndex + 1);
       const numbers = numberString.split(customDelimiter).map(Number);
       const negativeNumber = numbers.find(num => num < 0);
       if (negativeNumber !== undefined) {

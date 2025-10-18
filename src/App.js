@@ -27,7 +27,7 @@ class App {
   parseCustomDelimiter(input) {
     const normalized = input.replace(/\\n/g, "\n");
     const endIdx = normalized.indexOf("\n");
-    const delimiter = normalized.substring(2, endIdx);
+    const delimiter = normalized.substring("//".length, endIdx);
     const numStr = normalized.substring(endIdx + 1);
     return numStr.split(delimiter).map(Number);
   }

@@ -16,23 +16,23 @@ class App {
 
     if (input.startsWith(PREFIX)) {
       const normalizedInput = input.replace(/\\n/g, "\n");
-
       const delimiterEndIndex = normalizedInput.indexOf("\n");
       const customDelimiter = normalizedInput.substring(PREFIX.length, delimiterEndIndex);
       const numberString = normalizedInput.substring(delimiterEndIndex + 1);
       const numbers = numberString.split(customDelimiter).map(Number);
-      const negativeNumber = numbers.find(num => num < 0);
-      if (negativeNumber !== undefined) {
-        throw new Error("[ERROR] 음수는 입력할 수 없습니다.");
-      }
+      this.validateNumbers(numbers);
       return this.sum(numbers);
     }
     const numbers = input.split(/[,:]/).map(Number);
+    this.validateNumbers(numbers);
+    return this.sum(numbers);
+  }
+
+  validateNumbers(numbers) {
     const negativeNumber = numbers.find(num => num < 0);
     if (negativeNumber !== undefined) {
       throw new Error("[ERROR] 음수는 입력할 수 없습니다.");
     }
-    return this.sum(numbers);
   }
 
   sum(numbers) {

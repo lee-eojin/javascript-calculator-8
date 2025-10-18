@@ -19,7 +19,7 @@ class App {
       this.validateNumbers(numbers);
       return this.sum(numbers);
     }
-    const numbers = input.split(/[,:]/).map(Number);
+    const numbers = this.parseDefaultDelimiter(input);
     this.validateNumbers(numbers);
     return this.sum(numbers);
   }
@@ -30,6 +30,10 @@ class App {
     const customDelimiter = normalizedInput.substring(2, delimiterEndIndex);
     const numberString = normalizedInput.substring(delimiterEndIndex + 1);
     return numberString.split(customDelimiter).map(Number);
+  }
+
+  parseDefaultDelimiter(input) {
+    return input.split(/[,:]/).map(Number);
   }
 
   validateNumbers(numbers) {

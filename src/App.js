@@ -23,7 +23,8 @@ class App {
       console.log("숫자 부분:", numberString);
       return 0;
     }
-    return 0;
+    const numbers = input.split(/[,:]/).map(Number);
+    
   }
 }
 

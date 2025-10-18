@@ -12,16 +12,16 @@ class App {
       return 0;
     }
 
-    const PREFIX = "//";
-
-    if (input.startsWith(PREFIX)) {
-      const numbers = this.parseCustomDelimiter(input);
-      this.validateNumbers(numbers);
-      return this.sum(numbers);
-    }
-    const numbers = this.parseDefaultDelimiter(input);
+    const numbers = this.parseNumbers(input);
     this.validateNumbers(numbers);
     return this.sum(numbers);
+  }
+
+  parseNumbers(input) {
+    if (input.startsWith("//")) {
+      return this.parseCustomDelimiter(input);
+    }
+    return this.parseDefaultDelimiter(input);
   }
 
   parseCustomDelimiter(input) {

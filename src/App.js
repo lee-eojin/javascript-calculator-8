@@ -18,21 +18,21 @@ class App {
       const delimiterEndIndex = input.indexOf("\n");
       const customDelimiter = input.substring(PREFIX.length, delimiterEndIndex);
       const numberString = input.substring(delimiterEndIndex + 1);
-
-      console.log("커스텀 구분자:", customDelimiter);
-      console.log("숫자 부분:", numberString);
-      return 0;
+      const numbers = numberString.split(customDelimiter).map(Number);
+      const negativeNumber = numbers.find(num => num < 0);
+      if (negativeNumber !== undefined) {
+        throw new Error("[ERROR] 음수는 입력할 수 없습니다.");
+      }
+      const sum = numbers.reduce((acc, num) => acc + num, 0);
+      return sum;
     }
     const numbers = input.split(/[,:]/).map(Number);
-
     const negativeNumber = numbers.find(num => num < 0);
     if (negativeNumber !== undefined) {
       throw new Error("[ERROR] 음수는 입력할 수 없습니다.");
     }
-    
     const sum = numbers.reduce((acc, num) => acc + num, 0);
     return sum;
   }
 }
-
 export default App;

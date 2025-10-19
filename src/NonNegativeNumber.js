@@ -1,6 +1,6 @@
 import { ERROR_MESSAGES } from "./constants.js";
 
-class Number {
+class NonNegativeNumber {
   constructor(value) {
     this.value = value;
     this.#validateValue();
@@ -17,4 +17,4 @@ class Number {
   }
 }
 
-export default Number;
+export default NonNegativeNumber;

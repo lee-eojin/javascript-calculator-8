@@ -5,7 +5,7 @@ import {
   ESCAPED_NEWLINE,
   ERROR_MESSAGES,
 } from "./constants.js";
-import Number from "./Number.js";
+import NonNegativeNumber from "./NonNegativeNumber.js";
 
 class Delimiter {
   constructor() {
@@ -47,14 +47,14 @@ class Parser {
     const numbersString = normalized.substring(newlineIndex + 1);
     const numberStrings = delimiter.split(numbersString);
 
-    return numberStrings.map((token) => new Number(Number(token)));
+    return numberStrings.map((token) => new NonNegativeNumber(Number(token)));
   }
 
   #parseDefaultDelimiter(input) {
     const delimiter = new Delimiter();
     const numberStrings = delimiter.split(input);
 
-    return numberStrings.map((token) => new Number(Number(token)));
+    return numberStrings.map((token) => new NonNegativeNumber(Number(token)));
   }
 }
 

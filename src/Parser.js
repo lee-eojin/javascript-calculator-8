@@ -8,15 +8,11 @@ import {
 import NonNegativeNumber from "./NonNegativeNumber.js";
 
 class Delimiter {
-  constructor() {
-    this.delimiterPattern = DEFAULT_DELIMITERS;
-  }
-
-  setCustomDelimiter(delimiter) {
-    if (delimiter === "") {
+  constructor(pattern = DEFAULT_DELIMITERS) {
+    if (pattern === "") {
       throw new Error(ERROR_MESSAGES.EMPTY_DELIMITER);
     }
-    this.delimiterPattern = delimiter;
+    this.delimiterPattern = pattern;
   }
 
   split(text) {
@@ -41,20 +37,22 @@ class Parser {
     const newlineIndex = normalized.indexOf(NEWLINE);
     const customDelimiterString = normalized.substring(PREFIX.length, newlineIndex);
 
-    const delimiter = new Delimiter();
-    delimiter.setCustomDelimiter(customDelimiterString);
-
+    const delimiter = new Delimiter(customDelimiterString);
     const numbersString = normalized.substring(newlineIndex + 1);
     const numberStrings = delimiter.split(numbersString);
 
-    return numberStrings.map((token) => new NonNegativeNumber(Number(token)));
+    return this.#createNumbers(numberStrings);
   }
 
   #parseDefaultDelimiter(input) {
     const delimiter = new Delimiter();
     const numberStrings = delimiter.split(input);
 
-    return numberStrings.map((token) => new NonNegativeNumber(Number(token)));
+    return this.#createNumbers(numberStrings);
+  }
+
+  #createNumbers(tokens) {
+    return tokens.map((token) => new NonNegativeNumber(Number(token)));
   }
 }
 

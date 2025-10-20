@@ -2,7 +2,7 @@
 
 입력한 문자열에서 숫자를 추출하여 더하는 계산기
 
-### 디렉토리 구조
+## 디렉토리 구조
 
 ```
 src/
@@ -16,8 +16,9 @@ src/
 
 Delimiter 클래스는 Parser.js에 포함 (Parser의 내부 구분자 처리를 위한 클래스라서 함께 구현)
 
+---
 
-### 기능 목록
+## 기능 목록
 
 - 문자열 입력받기 (Console.readLineAsync)
 - 빈 문자열이면 -> 0 반환
@@ -33,7 +34,9 @@ Delimiter 클래스는 Parser.js에 포함 (Parser의 내부 구분자 처리를
 - 커스텀 구분자가 비어있을경우 에러
 - 숫자로 변환할 수 없는 값이 있을경우 에러
 
-### 처리 로직
+---
+
+## 처리 로직
 
 프로그램 실행의 시작점인 `index.js`에서 `App` 인스턴스를 생성하고 `run()`을 호출한다. `App.run()`은 `Console.readLineAsync()`를 통해 사용자로부터 문자열을 입력받아 `calculate(input)` 메서드로 전달한다.
 
@@ -45,8 +48,9 @@ Delimiter 클래스는 Parser.js에 포함 (Parser의 내부 구분자 처리를
 
 검증이 완료된 `NonNegativeNumber` 배열은 `Calculator` 인스턴스의 `sum()` 메서드로 전달된다. `Calculator.sum()`은 배열을 순회하며 각 `NonNegativeNumber` 객체의 `value` 속성을 합산하여 결과를 반환한다. 최종 결과는 `App.run()`에서 `Console.print()`를 통해 출력된다.
 
+---
 
-### 트러블슈팅 - readLineAsync의 `\n` 처리 문제
+## 트러블슈팅 - readLineAsync의 `\n` 처리 문제
 
 `Console.readLineAsync()`로 입력받은 문자열에서 `\n`은 실제 줄바꿈 문자가 아니라 백슬래시와 n 두 글자로 입력된다.
 

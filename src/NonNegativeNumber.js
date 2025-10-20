@@ -4,20 +4,20 @@ class NonNegativeNumber {
   #value;
 
   constructor(value) {
+    this.#validateValue(value);
     this.#value = value;
-    this.#validateValue();
   }
 
   get value() {
     return this.#value;
   }
 
-  #validateValue() {
-    if (this.#value < 0) {
+  #validateValue(value) {
+    if (value < 0) {
       throw new Error(ERROR_MESSAGES.NEGATIVE_NUMBER);
     }
 
-    if (isNaN(this.#value)) {
+    if (isNaN(value)) {
       throw new Error(ERROR_MESSAGES.INVALID_NUMBER);
     }
   }

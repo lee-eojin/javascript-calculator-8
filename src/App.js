@@ -1,8 +1,9 @@
 import { Console } from "@woowacourse/mission-utils";
+import { MESSAGE, ERROR_MESSAGE } from './constants.js'; 
 
 class App {
   async run() {
-    const input = await Console.readLineAsync('덧셈할 문자열을 입력해주세요.\n');
+    const input = await Console.readLineAsync(MESSAGE.INPUT_PROMPT);
 
     let parts;
     if (input.startsWith('//')) {
@@ -23,11 +24,12 @@ class App {
     }
 
     if (numbers.some(num => num < 0)) {
-      throw new Error('[ERROR] 음수는 입력할 수 없습니다.');
+      throw new Error(ERROR_MESSAGE.NEGATIVE_NUMBER);
     }
 
     const sum = numbers.reduce((accumlator, current) => accumlator + current, 0);
-    Console.print(`결과 : ${sum}`);
+    // Console.print(`결과 : ${sum}`);
+    Console.print(MESSAGE.RESULT + sum); 
   }
 }
 

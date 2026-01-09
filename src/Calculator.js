@@ -1,7 +1,5 @@
 class Calculator {
-  sum(numbers) {
-    return numbers.reduce((accumlator, current) => accumlator + current, 0);
-  }
+  // TODO: 계산 로직 구현
 }
 
 export default Calculator;

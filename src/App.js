@@ -20,15 +20,20 @@ class App {
       numbers = stringNumber.split(/[,:]/).map(Number);
     }
 
-    if (numbers.some(num => num < 0)) {
-    throw new Error("[ERROR] 양수가 아닙니다.");
-  }
-
+    this.#validateNumbers(numbers);
 
     const sum = numbers.reduce((acc, cur) => acc + cur, 0);
     outputView.printResult(sum);
+  }
 
-  
+  #validateNumbers(numbers) {
+    if (numbers.some((num) => Number.isNaN(num))) {
+      throw new Error("[ERROR] 잘못된 형식입니다.");
+    }
+
+    if (numbers.some((num) => num < 0)) {
+      throw new Error("[ERROR] 양수가 아닙니다.");
+    }
   }
 }
 
